@@ -12,15 +12,15 @@ int main(int argc, char* argv[]) {
         n = n * 10 + (argv[1][i] - '0');
         ++i;
     }
-    float* a = new float[n];
-    float* b = new float[n];
+    double* a = new double[n];
+    double* b = new double[n];
     for (int i = 0; i < n; ++i) {
         std::cin >> a[i];
     }
     for (int i = 0; i < n; ++i) {
         std::cin >> b[i];
     }
-    float result = 0;
+    double result = 0;
     for (int i = 0; i < n; ++i) {
         result += a[i] * b[i];
     }

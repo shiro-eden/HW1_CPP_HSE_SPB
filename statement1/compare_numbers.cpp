@@ -23,8 +23,6 @@ int main(int argc, char* argv[]) {
     }
     char* x = argv[1];
     char* y = argv[2];
-    // char *x = "0";
-    // char *y = "-0.1";
 
     if (x[0] == '+') {
         x++;
@@ -47,8 +45,8 @@ int main(int argc, char* argv[]) {
     }
     size_t len_x = my_strlen(x);
     size_t len_y = my_strlen(y);
-    size_t position_dot_x = 0;
-    size_t position_dot_y = 0;
+    size_t position_dot_x = len_x;
+    size_t position_dot_y = len_y;
     for (size_t i = 0; i < len_x; i++) {
         if (x[i] == '.') {
             position_dot_x = i;
@@ -69,31 +67,19 @@ int main(int argc, char* argv[]) {
         print_reverse_state(reverse_state);
         return 0;
     }
-    if (position_dot_x == 0) {
-        if (len_x > len_y) {
-            print_reverse_state(not reverse_state);
-            return 0;
-        }
-        if (len_y > len_x) {
+    for (size_t i = 0; i < position_dot_x; i++) {
+        if (x[i] < y[i]) {
             print_reverse_state(reverse_state);
             return 0;
         }
-        for (size_t i = 0; i < len_y; i++) {
-            if (x[i] < y[i]) {
-                print_reverse_state(reverse_state);
-                return 0;
-            }
-            if (x[i] > y[i]) {
-                print_reverse_state(not reverse_state);
-                return 0;
-            }
+        if (x[i] > y[i]) {
+            print_reverse_state(not reverse_state);
+            return 0;
         }
-        std::cout << "equal" << std::endl;
-        return 0;
     }
 
-    x += position_dot_x + 1;
-    y += position_dot_y + 1;
+    x += position_dot_x < len_x ? position_dot_x + 1 : len_x;
+    y += position_dot_y < len_y ? position_dot_y + 1 : len_y;
     len_x = my_strlen(x);
     len_y = my_strlen(y);
     size_t len_min = len_x < len_y ? len_x : len_y;
