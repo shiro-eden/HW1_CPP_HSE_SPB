@@ -8,7 +8,7 @@ int main(int argc, char* argv[]) {
 
     int n = 0;
     int i = 0;
-    while (argv[i][1] != '\0') {
+    while (argv[1][i] != '\0') {
         n = n * 10 + (argv[1][i] - '0');
         ++i;
     }
